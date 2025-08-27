@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Home</h1>
+
+    {% if usuario is defined %}
+        <p>Olá, {{ usuario.nome }}! Você está na página inicial aqui e a HomePage.</p>
+
+        <form method="post" action="index.php?rota=logout">
+            <button type="submit">Sair</button>
+        </form>
+    {% else %}
+        <p>Você não está logado.</p>
+        <a href="index.php?rota=login">Ir para o login</a>
+    {% endif %}
+</body>
+</html>

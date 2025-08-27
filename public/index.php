@@ -1,43 +1,37 @@
 <?php
 
-
 declare(strict_types=1);
-
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use App\Core\Router;
 use App\Controller\LoginController;
-
 
 session_start();
 
 $rota = $_GET['rota'] ?? 'login';
-
 $controller = new LoginController();
+$router = new Router();
 
-switch ($rota) {
-    case 'login':
-        $controller->exibirLogin();
-        break;
 
-    case 'autenticar':
-        $controller->autenticar();
-        break;
-
-    case 'dashboard':
-        if (!isset($_SESSION['usuario'])) {
-            header('Location: index.php?rota=login');
-            exit;
-        }
-        echo "<h1>Bem-vindo, {$_SESSION['usuario']['nome']}!</h1>";
-        echo '<a href="index.php?rota=logout">Sair</a>';
-        break;
-
-    case 'logout':
-        session_destroy();
+$router->add('login', fn() => $controller->exibirLogin());
+$router->add('autenticar', fn() => $controller->autenticar());
+$router->add('home', function () use ($controller) {
+    if (!isset($_SESSION['usuario'])) {
         header('Location: index.php?rota=login');
         exit;
+    }
+    $controller->exibirHome();
+});
+$router->add('logout', function () {
+    if (isset($_SESSION['usuario'])) {
+        header('Location: index.php?rota=home');
+        exit;
+    }
+    session_destroy();
+    header('Location: index.php?rota=login');
+    exit;
+});
 
-    default:
-        echo 'Rota inválida.';
-}
+// Executa a rota
+$router->dispatch($rota);

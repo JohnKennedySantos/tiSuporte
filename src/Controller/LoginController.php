@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Model\UsuarioModel;
 
 
@@ -9,10 +10,10 @@ use App\Config\TwigConfig;
 
 class LoginController
 {
-    
+ 
     private $twig;
 
-    
+  
     public function __construct()
     {
 

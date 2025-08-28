@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Home</h1>
+{% extends "base.html.twig" %}
 
-    {% if usuario is defined %}
-        <p>Olá, {{ usuario.nome }}! Você está na página inicial aqui e a HomePage.</p>
+{% block title %}Home - SUPORTE TI{% endblock %}
 
-        <form method="post" action="index.php?rota=logout">
-            <button type="submit">Sair</button>
-        </form>
-    {% else %}
-        <p>Você não está logado.</p>
-        <a href="index.php?rota=login">Ir para o login</a>
-    {% endif %}
-</body>
-</html>
+{% block header %}
+    {% include "header.html.twig" %}
+{% endblock %}
+
+{% block content %}
+    <section class="home-section">
+        <h1>Bem-vindo à Home</h1>
+
+        {% if usuario is defined %}
+            <p>Olá, <strong>{{ usuario.nome }}</strong>! Você está na página inicial do sistema.</p>
+
+            <form method="post" action="index.php?rota=logout">
+                <button type="submit" class="btn">Sair</button>
+            </form>
+        {% else %}
+            <p>Você não está logado.</p>
+            <a href="index.php?rota=login" class="btn">Ir para o login</a>
+        {% endif %}
+    </section>
+{% endblock %}

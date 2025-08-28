@@ -1,24 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-    <h1>Login</h1>
+{% extends "base.html.twig" %}
 
-    {% if erro is defined %}
-        <p style="color: blue;">{{ erro }}</p>
-    {% endif %}
+{% block content %}
+<div class="login-wrapper">
 
-    <form method="post" action="index.php?rota=autenticar">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required>
+    <section class="login-container">
+    
+            <!-- Coluna esquerda -->
+            <section class="login-left">
+                <h1>Bem-vindo ao DataGest</h1>
+                <p>Você pode acessar o sistema usando sua conta existente.</p>
+            </section>
 
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" id="senha" required>
+            <!-- Coluna direita -->
+            <section class="login-right">
+                <h2>Acessar conta</h2>
 
-        <button type="submit">Entrar</button>
-    </form>
-</body>
-</html>
+                {% if erro is defined %}
+                    <div class="alert alert-error">
+                        {{ erro }}
+                    </div>
+                {% endif %}
+
+                <form method="post" action="index.php?rota=autenticar" class="login-form">
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                    </div>
+
+                    <button type="submit" class="btn">Entrar</button>
+                </form>
+
+            </section>
+    </section>
+
+</div>
+{% endblock %}

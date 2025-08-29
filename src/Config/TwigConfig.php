@@ -9,7 +9,11 @@ class TwigConfig
 {
     public static function getTwig(): Environment
     {
-        $loader = new FilesystemLoader(__DIR__ . '/../View');
+        $loader = new FilesystemLoader([
+            __DIR__ . '/../View/Pages',   
+            __DIR__ . '/../View/Components',  
+            __DIR__ . '/../View',         
+            ]);
         $twig = new Environment($loader);
 
         // Detecta base_url automaticamente (ou define fixo)
@@ -23,8 +27,7 @@ class TwigConfig
 
     private static function getBaseUrl(): string
     {
-        // Se você rodar com servidor embutido (php -S localhost:8080 -t public)
-        // a base será apenas "/"
+
         $scriptName = dirname($_SERVER['SCRIPT_NAME']);
         return rtrim(str_replace('\\', '/', $scriptName), '/') . '/';
     }

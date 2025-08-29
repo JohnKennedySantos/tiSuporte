@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Home - SUPORTE TI{% endblock %}
+
+{% block header %}
+    {% include "header.html.twig" %}
+{% endblock %}
+
+{% block content %}
+
+    <section class="home-section">
+        <h1>Bem-vindo à Home</h1>
+    </section>
+
+     <section class="card-section">
+        {% block card %}
+        {% include "Card.html.twig" %}
+        {% endblock %}
+     </section>
+
+
+{% endblock %}
+
+

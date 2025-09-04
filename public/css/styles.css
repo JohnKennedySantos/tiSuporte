@@ -1,217 +1,395 @@
 /* === RESET BÁSICO === */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; /* Remove as margens padrão de todos os elementos */
+    padding: 0; /* Remove os espaçamentos internos padrão */
+    box-sizing: border-box; /* Inclui padding e border no cálculo total do elemento */
 }
 
 body {
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
-    background: linear-gradient(135deg, #0a1f44 0%, #1c3a6b 100%);
-    color: #e0e0e0;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-
+    font-family: "Segoe UI", Roboto, Arial, sans-serif; /* Fonte padrão */
+    background: linear-gradient(135deg, #ffffff 0%, #dce5f4 100%); /* Fundo com degradê */
+    color: #0b0b0b; /* Cor padrão do texto */
+    display: flex; /* Define como flex container */
+    flex-direction: column; /* Organiza os itens em coluna */
+    min-height: 100vh; /* Garante altura mínima da tela */
 }
 
-/* Header */
-.site-header {
-    background: linear-gradient(135deg, #0a1f44 0%, #1c3a6b 100%);
-    padding: 20px 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+/* ===== HEADER ===== */
+/* Container principal do cabeçalho */
+.nav-container {
+    display: flex; /* Organiza os elementos em linha */
+    justify-content: space-between; /* Espaço entre esquerda, centro e direita */
+    align-items: center; /* Alinha verticalmente ao centro */
+    background-color: #00A9D4; /* Cor de fundo do header */
+    padding: 0px 20px; /* <-- Aqui você pode alterar a altura do header (10px = altura mínima) */
+    color: #fff; /* Cor do texto no header */
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
 }
 
-.site-header nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: flex-start;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
+.mobile-menu-area {
+    display: flex; /* Itens em linha */
+    align-items: center; /* Alinha verticalmente */
+    gap: 10px; /* Espaço entre itens */
+    flex: 1; /* Ocupa parte flexível do espaço */
 }
 
-.site-header nav ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.3s ease;
+.mobile-menu {
+    display: flex; /* Flex container */
+    flex-direction: column; /* Barrinhas ficam empilhadas */
+    justify-content: space-between; /* Espaça as barrinhas igualmente */
+    width: 25px; /* Largura do menu hambúrguer */
+    height: 20px; /* Altura do menu hambúrguer */
+    cursor: pointer; /* Mostra cursor de mão */
 }
 
-.site-header nav ul li a:hover {
-    color: #a3c9f7;
+.mobile-menu div {
+    background-color: #fff; /* Cor das barrinhas */
+    height: 3px; /* Espessura da barrinha */
+    border-radius: 2px; /* Bordas levemente arredondadas */
 }
 
-/* Responsivo para telas menores */
+.page-title {
+    font-size: 18px; /* Tamanho do título */
+    font-weight: bold; /* Negrito */
+    padding: 15px; /* Espaço interno */
+}
+
+/* Área do logo */
+.logo-area {
+    flex: 1; /* Ocupa parte do espaço */
+    display: flex; /* Flex container */
+    justify-content: center; /* Centraliza o logo */
+}
+
+.logo img {
+    height: 30px; /* <-- Aqui você pode alterar o tamanho da logo (aumenta/diminui a altura do header junto) */
+    width: auto; /* Mantém proporção */
+}
+
+/* Área do usuário (lado direito do header) */
+.user-area {
+    flex: 1; /* Ocupa parte do espaço */
+    display: flex; /* Flex container */
+    justify-content: flex-end; /* Alinha à direita */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 15px; /* Espaço entre elementos */
+}
+
+.user-name {
+    font-size: 16px; /* Tamanho do texto */
+    font-weight: 500; /* Meio negrito */
+}
+
+
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
-    .site-header nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+    .nav-container {
+        flex-direction: column; /* Empilha os itens */
+        align-items: stretch; /* Ocupa toda largura */
     }
 
-    .site-header {
-        padding: 20px;
+    .mobile-menu-area,
+    .logo-area,
+    .user-area {
+        justify-content: center; /* Centraliza os itens */
+        margin: 10px 0; /* Espaço entre eles */
+    }
+
+    .user-area {
+        flex-direction: column; /* Coloca elementos em coluna */
+        gap: 10px; /* Espaço entre os itens */
     }
 }
 
+/* ======= LAYOUT GERAL ====== */
+.layout {
+    display: flex; /* Layout em linha */
+    flex-direction: row; /* Colunas lado a lado */
+}
 
-/* Container principal em 2 colunas */
+.main-content {
+    flex: 1; /* Ocupa todo o espaço disponível */
+    padding: 20px; /* Espaçamento interno */
+    background-color: #ecf0f1; /* Fundo claro */
+    min-height: calc(100vh - 60px); /* Ajusta a altura menos o header */
+}
+
+/* ===== VIEW LOGIN ===== */
 .login-wrapper {
-    display: flex;
-    height: 100vh;
-    font-family: Arial, sans-serif;
+    display: flex; /* Layout flex */
+    height: 100vh; /* Ocupa a tela inteira */
+    font-family: Arial, sans-serif; /* Fonte padrão */
 }
 
 .login-container {
-    display: flex;
-    width: 80vw;
-    height: 550px;
-    margin: auto;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-    border-radius: 16px;
-    overflow: hidden;
-    background: #ffffff;
-    color: #333;
+    display: flex; /* Container flexível */
+    width: 80vw; /* Ocupa 80% da largura da tela */
+    height: 550px; /* Altura fixa */
+    margin: auto; /* Centraliza na tela */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25); /* Sombra */
+    border-radius: 16px; /* Bordas arredondadas */
+    overflow: hidden; /* Esconde conteúdo que passa do limite */
+    background: #ffffff; /* Fundo branco */
+    color: #333; /* Texto escuro */
 }
 
-/* Coluna esquerda */
 .login-left {
-    flex: 7;
-    background: linear-gradient(135deg, #0a1f44 0%, #142f5f 50%, #1c3a6b 100%);
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-    text-align: center;
+    flex: 7; /* Parte maior */
+    background: linear-gradient(135deg, #0a1f44 0%, #142f5f 50%, #1c3a6b 100%); /* Fundo em degradê */
+    color: #ffffff; /* Texto branco */
+    display: flex; /* Flex container */
+    flex-direction: column; /* Elementos em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    padding: 50px; /* Espaço interno */
+    text-align: center; /* Texto centralizado */
 }
 
 .login-left h1 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-    color: #ffffffcc;
+    font-size: 2.2rem; /* Tamanho do título */
+    margin-bottom: 15px; /* Espaço abaixo */
+    color: #ffffffcc; /* Branco com transparência */
 }
 
 .login-left p {
-    font-size: 1.1rem;
-    color: #ffffffb3;
-    max-width: 300px;
+    font-size: 1.1rem; /* Texto médio */
+    color: #ffffffb3; /* Branco mais suave */
+    max-width: 300px; /* Largura máxima */
 }
 
-/* Coluna direita */
 .login-right {
-    flex: 3;
-    background: #f0f4fa;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 60px;
-    border-radius: 0 16px 16px 0;
-    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+    flex: 3; /* Parte menor */
+    background: #f0f4fa; /* Fundo claro */
+    display: flex; /* Flex container */
+    flex-direction: column; /* Coloca itens em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    padding: 60px; /* Espaço interno */
+    border-radius: 0 16px 16px 0; /* Bordas arredondadas do lado direito */
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1); /* Sombra lateral */
 }
 
 .login-right h2 {
-    margin-bottom: 25px;
-    font-size: 1.6rem;
-    color: #0a1f44;
+    margin-bottom: 25px; /* Espaço inferior */
+    font-size: 1.6rem; /* Tamanho médio */
+    color: #0a1f44; /* Azul escuro */
 }
 
-/* Formulário */
 .login-form {
-    display: flex;
-    flex-direction: column;
+    display: flex; /* Flex container */
+    flex-direction: column; /* Coluna */
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Espaço inferior */
 }
 
 .login-form input {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #cdd9ed;
-    border-radius: 30px;
-    outline: none;
-    font-size: 15px;
-    transition: 0.3s;
-    background-color: #ffffff;
+    width: 100%; /* Largura total */
+    padding: 14px; /* Espaço interno */
+    border: 1px solid #cdd9ed; /* Borda cinza clara */
+    border-radius: 30px; /* Bordas arredondadas */
+    outline: none; /* Remove contorno */
+    font-size: 15px; /* Texto médio */
+    transition: 0.3s; /* Suaviza interações */
+    background-color: #ffffff; /* Fundo branco */
 }
 
 .login-form input:focus {
-    border-color: #0a1f44;
-    box-shadow: 0 0 10px rgba(10, 31, 68, 0.3);
+    border-color: #0a1f44; /* Azul escuro */
+    box-shadow: 0 0 10px rgba(10, 31, 68, 0.3); /* Sombra azul */
 }
 
-
-.btn {
-    background: linear-gradient(135deg, #0a1f44 0%, #1c3a6b 100%);
-    color: #fff;
-    padding: 14px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: 0.3s;
+.btnlogin {
+    background: linear-gradient(135deg, #0a1f44 0%, #1c3a6b 100%); /* Fundo degradê */
+    color: #fff; /* Texto branco */
+    padding: 14px; /* Espaçamento interno */
+    border: none; /* Remove borda */
+    border-radius: 30px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de mão */
+    font-size: 1rem; /* Tamanho da fonte */
+    transition: 0.3s; /* Suaviza efeitos */
 }
 
-.btn:hover {
-    opacity: 0.9;
+.btnlogin:hover {
+    opacity: 0.9; /* Fica levemente transparente */
 }
 
+@media (max-width: 768px) {
+    .card-section {
+        flex-direction: column; /* Empilha cards */
+        align-items: center; /* Centraliza */
+    }
+}
 
+/* ===== CARDS ===== */
+.card-section {
+    display: grid; /* Layout em grid */
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    gap: 9px; /* Espaço entre cards */
+    padding: 15px; /* Espaço interno */
+    justify-items: center; /* Centraliza os cards */
+}
 
-/* Cartões de Informação  */
 .card {
-  background: #c71111;
-  color: #fff;
-  width: 320px;
-  height: 200px;
-  border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  padding: 20px;
-  margin: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    background: #ffffff; /* Fundo branco */
+    color: #333; /* Texto escuro */
+    width: 370px; /* Largura fixa */
+    height: 200px; /* Altura fixa */
+    border-radius: 12px; /* Bordas arredondadas */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Sombra */
+    padding: 20px; /* Espaço interno */
+    display: flex; /* Flex container */
+    flex-direction: column; /* Coloca itens em coluna */
+    justify-content: space-between; /* Espaço entre título e corpo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza animações */
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px); /* Levanta o card */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Mais sombra */
 }
 
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.1em;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 8px;
-}
-
-.card-header h3 {
-  margin: 0;
-  font-size: 1.2em;
-}
-
-.card-header .id {
-  font-size: 0.9em;
-  opacity: 0.85;
+    display: flex; /* Flex container */
+    justify-content: space-between; /* Espaço entre título e ícone */
+    align-items: center; /* Centraliza verticalmente */
+    font-weight: bold; /* Negrito */
+    font-size: 1.1em; /* Tamanho */
 }
 
 .card-body {
-  padding-top: 12px;
-  font-size: 0.95em;
-  line-height: 1.4;
-  opacity: 0.95;
+    font-size: 0.95em; /* Texto médio */
+    color: #555; /* Cinza */
+}
+
+
+
+.sidebar {
+width: 65px;  /* Largura inicial (colapsado) */
+background: #0383a3;; /* Fundo escuro */
+color: #ecf0f1; /* Texto branco */
+height: 100vh; /* Ocupa toda a tela */
+padding: 15px 5px;
+transition: width 0.3s ease;
+display: flex;
+flex-direction: column;
+justify-content: space-between; /* Mantém o logout no rodapé */
+
+}
+
+/* Sidebar expandida */
+.sidebar.active {
+width: 200px;
+}
+
+
+/* Scroll customizado */
+.sidebar ul::-webkit-scrollbar {
+width: 6px;
+}
+.sidebar ul::-webkit-scrollbar-thumb {
+background: #00A9D4;;
+border-radius: 4px;
+}
+/* Itens */
+.sidebar li {
+margin-bottom: 10px;
+position: relative; /* Movi o position relative para li, para o tooltip não ser clipado */
+}
+.sidebar a {
+display: flex;
+align-items: center;
+padding: 12px;
+border-radius: 8px;
+color: inherit;
+text-decoration: none;
+transition: background 0.2s;
+}
+/* Hover */
+.sidebar a:hover {
+background: #0060c1ed;
+}
+/* Ícones */
+.sidebar i {
+font-size: 18px;
+min-width: 25px;
+text-align: center;
+}
+/* Texto visível normalmente quando expandido */
+.sidebar a span {
+margin-left: 10px; /* Espaço entre ícone e texto quando expandido */
+}
+/* Texto escondido quando colapsado */
+.sidebar:not(.active) a span {
+display: none;
+position: absolute;
+left: calc(100% + 10px); /* Aparece à direita com espaçamento */
+top: 50%;
+transform: translateY(-50%);
+background: #34495e; /* Fundo para destacar */
+color: #ecf0f1;
+padding: 8px 12px;
+border-radius: 6px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+white-space: nowrap;
+opacity: 0;
+transition: opacity 0.2s ease;
+z-index: 10;
+}
+/* Mostra o span no hover quando colapsado */
+.sidebar:not(.active) li:hover a span {
+display: block;
+opacity: 1;
+}
+/* Item ativo */
+.sidebar li.active a {
+background: #44d4b7;
+color: white;
+font-weight: bold;
+}
+.logout-form button {
+    width: 100%;
+   background: #0383a3;; /* Fundo escuro */
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative; /* Necessário para o span flutuar */
+    transition: background 0.2s;
+}
+
+/* Hover do botão */
+.logout-form button:hover {
+    background: #c0392b;
+}
+
+/* Span do tooltip do botão */
+.logout-form button span {
+    display: none; /* Escondido por padrão */
+    position: absolute;
+    left: 110%; /* Fica à direita do botão */
+    top: 50%;
+    transform: translateY(-50%);
+    background: #34495e;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+/* Mostra o tooltip apenas no hover do botão */
+.logout-form button:hover span {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
 }

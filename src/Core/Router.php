@@ -4,33 +4,81 @@ namespace App\Core;
 
 class Router
 {
-    // Armazena as rotas registradas
     private array $routes = [];
 
     /**
-     * Registra uma rota e sua ação correspondente
-     *
-     * @param string $rota Nome da rota (ex: 'login', 'home')
-     * @param callable $action Função que será executada quando a rota for chamada
+     * Adiciona uma nova rota.
      */
-    public function add(string $rota, callable $action): void
+    public function add(string $method, string $path, callable|array $action): void
     {
-        $this->routes[$rota] = $action;
+        $method = strtoupper($method);
+        $this->routes[$method][$path] = $action;
     }
 
     /**
-     * Executa a ação correspondente à rota solicitada
-     *
-     * @param string $rota Rota recebida via URL (ex: index.php?rota=home)
+     * Dispara a rota correspondente.
      */
-    public function dispatch(string $rota): void
+    public function dispatch(string $method, string $rota): void
     {
-        if (isset($this->routes[$rota])) {
-   
-            call_user_func($this->routes[$rota]);
-        } else {
-           
-            echo '<h1>404 - Rota inválida</h1>';
+        $method = strtoupper($method);
+
+        if (!isset($this->routes[$method])) {
+            $this->render404($rota);
+            return;
         }
+
+        // Rota exata
+        if (isset($this->routes[$method][$rota])) {
+            $this->executeAction($this->routes[$method][$rota]);
+            return;
+        }
+
+        // Rotas dinâmicas
+        foreach ($this->routes[$method] as $path => $action) {
+            $regex = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([a-zA-Z0-9_-]+)', $path);
+            $regex = "#^" . $regex . "$#";
+
+            if (preg_match($regex, $rota, $matches)) {
+                array_shift($matches);
+                $this->executeAction($action, $matches);
+                return;
+            }
+        }
+
+        $this->render404($rota);
+    }
+
+    /**
+     * Executa o método do controller ou callback
+     */
+    private function executeAction(callable|array $action, array $params = []): void
+    {
+        if (is_array($action)) {
+            [$controllerClass, $method] = $action;
+
+            if (!class_exists($controllerClass)) {
+                throw new \Exception("Controller não encontrado: {$controllerClass}");
+            }
+
+            $controller = new $controllerClass();
+
+            if (!method_exists($controller, $method)) {
+                throw new \Exception("Método '{$method}' não encontrado no controller {$controllerClass}");
+            }
+
+            call_user_func_array([$controller, $method], $params);
+            return;
+        }
+
+        call_user_func_array($action, $params);
+    }
+
+    /**
+     * Página 404
+     */
+    private function render404(string $rota): void
+    {
+        http_response_code(404);
+        echo "<h1>404 - Rota '{$rota}' não encontrada</h1>";
     }
 }

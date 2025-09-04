@@ -10,6 +10,7 @@ class TwigConfig
     public static function getTwig(): Environment
     {
         $loader = new FilesystemLoader([
+            __DIR__ . '/../View/Templates',
             __DIR__ . '/../View/Pages',   
             __DIR__ . '/../View/Components',  
             __DIR__ . '/../View',         

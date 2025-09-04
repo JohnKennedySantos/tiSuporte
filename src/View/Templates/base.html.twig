@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}SUPORTE - TI{% endblock %}</title>
+
     <link rel="stylesheet" href="{{ base_url }}css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    {% block stylesheets %}{% endblock %}
 </head>
 <body>
     {% block header %}{% endblock %}
@@ -11,5 +15,9 @@
     <main>
         {% block content %}{% endblock %}
     </main>
+
+    {% block javascripts %}
+        <script src="{{ base_url }}js/Sidebar.js"></script>
+    {% endblock %}
 </body>
 </html>

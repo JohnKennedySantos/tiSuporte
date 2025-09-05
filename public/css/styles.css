@@ -1,395 +1,404 @@
-/* === RESET BÁSICO === */
+/* =========================
+   RESET BÁSICO
+========================= */
 * {
-    margin: 0; /* Remove as margens padrão de todos os elementos */
-    padding: 0; /* Remove os espaçamentos internos padrão */
-    box-sizing: border-box; /* Inclui padding e border no cálculo total do elemento */
+    margin: 0;                  /* Remove margem padrão de todos os elementos */
+    padding: 0;                 /* Remove padding padrão */
+    box-sizing: border-box;     /* Inclui borda e padding no cálculo do tamanho do elemento */
 }
 
+/* =========================
+   VARIÁVEIS DE TEMA
+========================= */
+:root {
+    --font-main: "Segoe UI", Roboto, Arial, sans-serif;   /* Fonte padrão do projeto */
+
+    /* Paleta de cores */
+    --primary: linear-gradient(135deg, #0a1f44 0%, #142f5f 50%, #1c3a6b 100%);         /* Cor principal */
+    --primary-light: #0a1f44; /* Cor mais clara da principal */
+    --primary-dark: #0060c1;    /* Cor mais escura da principal */
+    --accent: #0060c1;          /* Cor de destaque */
+    --danger: #c0392b;          /* Cor para avisos/erros */
+    --text-dark: #0b0b0b;       /* Cor padrão do texto */
+    --text-light: #ffffff;      /* Texto claro (geralmente em fundos escuros) */
+    --sidebar-bg: #0c4a89;      /* Fundo da sidebar */
+    --card-bg: #ffffff;         /* Fundo dos cards */
+    --login-left-bg: linear-gradient(135deg, #0a1f44 0%, #142f5f 50%, #1c3a6b 100%); /* Fundo degradê login esquerdo */
+    --page-bg: linear-gradient(135deg, #ffffff 0%, #dce5f4 100%); /* Fundo da página */
+}
+
+/* =========================
+   BODY
+========================= */
 body {
-    font-family: "Segoe UI", Roboto, Arial, sans-serif; /* Fonte padrão */
-    background: linear-gradient(135deg, #ffffff 0%, #dce5f4 100%); /* Fundo com degradê */
-    color: #0b0b0b; /* Cor padrão do texto */
-    display: flex; /* Define como flex container */
-    flex-direction: column; /* Organiza os itens em coluna */
-    min-height: 100vh; /* Garante altura mínima da tela */
+    font-family: var(--font-main);     /* Define a fonte global */
+    background: var(--page-bg);        /* Aplica o fundo da página */
+    color: var(--text-dark);           /* Cor padrão do texto */
+    display: flex;                     /* Flexbox para organizar layout */
+    flex-direction: column;            /* Coloca os elementos do body em coluna */
+    min-height: 100vh;                 /* Garante que o body ocupe no mínimo toda a tela */
 }
 
-/* ===== HEADER ===== */
-/* Container principal do cabeçalho */
+/* =========================
+   HEADER
+========================= */
 .nav-container {
-    display: flex; /* Organiza os elementos em linha */
-    justify-content: space-between; /* Espaço entre esquerda, centro e direita */
-    align-items: center; /* Alinha verticalmente ao centro */
-    background-color: #00A9D4; /* Cor de fundo do header */
-    padding: 0px 20px; /* <-- Aqui você pode alterar a altura do header (10px = altura mínima) */
-    color: #fff; /* Cor do texto no header */
-    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    display: flex;                     /* Layout flexível */
+    justify-content: space-between;    /* Espaço entre itens (logo à esquerda, user à direita) */
+    align-items: center;               /* Centraliza itens verticalmente */
+    background-color: var(--primary-light); /* Cor de fundo do header */
+    padding: 0 1.25rem;                /* Espaçamento interno nas laterais */
+    color: var(--text-light);          /* Cor do texto */
+    flex-wrap: wrap;                   /* Quebra linha em telas pequenas */
 }
 
 .mobile-menu-area {
-    display: flex; /* Itens em linha */
-    align-items: center; /* Alinha verticalmente */
-    gap: 10px; /* Espaço entre itens */
-    flex: 1; /* Ocupa parte flexível do espaço */
+    display: flex;                     /* Flexbox */
+    align-items: center;               /* Centraliza ícones verticalmente */
+    gap: 0.625rem;                     /* Espaço entre elementos */
+    flex: 1;                           /* Ocupa 1 parte do espaço disponível */
 }
 
 .mobile-menu {
-    display: flex; /* Flex container */
-    flex-direction: column; /* Barrinhas ficam empilhadas */
-    justify-content: space-between; /* Espaça as barrinhas igualmente */
-    width: 25px; /* Largura do menu hambúrguer */
-    height: 20px; /* Altura do menu hambúrguer */
-    cursor: pointer; /* Mostra cursor de mão */
+    display: flex;                     /* Flexbox */
+    flex-direction: column;            /* Barrinhas do menu uma abaixo da outra */
+    justify-content: space-between;    /* Espaçamento uniforme entre as barrinhas */
+    width: 25px;                       /* Largura do botão hambúrguer */
+    height: 20px;                      /* Altura do botão hambúrguer */
+    cursor: pointer;                   /* Cursor de clique */
 }
 
 .mobile-menu div {
-    background-color: #fff; /* Cor das barrinhas */
-    height: 3px; /* Espessura da barrinha */
-    border-radius: 2px; /* Bordas levemente arredondadas */
+    background-color: var(--text-light); /* Cor das barrinhas */
+    height: 3px;                         /* Espessura da barrinha */
+    border-radius: 2px;                  /* Deixa as pontas arredondadas */
 }
 
 .page-title {
-    font-size: 18px; /* Tamanho do título */
-    font-weight: bold; /* Negrito */
-    padding: 15px; /* Espaço interno */
+    font-size: 1.125rem;              /* Tamanho da fonte */
+    font-weight: bold;                /* Negrito */
+    padding: 0.9375rem;               /* Espaçamento interno */
 }
 
-/* Área do logo */
 .logo-area {
-    flex: 1; /* Ocupa parte do espaço */
-    display: flex; /* Flex container */
-    justify-content: center; /* Centraliza o logo */
+    flex: 1;                          /* Ocupa 1 parte do espaço */
+    display: flex;                    /* Flexbox */
+    justify-content: center;          /* Centraliza horizontalmente */
 }
 
 .logo img {
-    height: 30px; /* <-- Aqui você pode alterar o tamanho da logo (aumenta/diminui a altura do header junto) */
-    width: auto; /* Mantém proporção */
+    height: 30px;                     /* Altura fixa da logo */
+    width: auto;                      /* Mantém proporção */
 }
 
-/* Área do usuário (lado direito do header) */
 .user-area {
-    flex: 1; /* Ocupa parte do espaço */
-    display: flex; /* Flex container */
-    justify-content: flex-end; /* Alinha à direita */
-    align-items: center; /* Centraliza verticalmente */
-    gap: 15px; /* Espaço entre elementos */
+    flex: 1;                          /* Ocupa 1 parte */
+    display: flex;                    /* Flexbox */
+    justify-content: flex-end;        /* Alinha à direita */
+    align-items: center;              /* Centraliza verticalmente */
+    gap: 0.9375rem;                   /* Espaço entre itens */
 }
 
 .user-name {
-    font-size: 16px; /* Tamanho do texto */
-    font-weight: 500; /* Meio negrito */
+    font-size: 1rem;                  /* Tamanho da fonte */
+    font-weight: 500;                 /* Peso médio */
 }
 
-
-/* Responsividade para telas menores */
+/* Responsividade Header */
 @media (max-width: 768px) {
     .nav-container {
-        flex-direction: column; /* Empilha os itens */
-        align-items: stretch; /* Ocupa toda largura */
+        flex-direction: column;       /* Empilha os itens */
+        align-items: stretch;         /* Estica para ocupar largura toda */
     }
 
     .mobile-menu-area,
     .logo-area,
     .user-area {
-        justify-content: center; /* Centraliza os itens */
-        margin: 10px 0; /* Espaço entre eles */
+        justify-content: center;      /* Centraliza em telas menores */
+        margin: 0.625rem 0;           /* Margem vertical */
     }
 
     .user-area {
-        flex-direction: column; /* Coloca elementos em coluna */
-        gap: 10px; /* Espaço entre os itens */
+        flex-direction: column;       /* Empilha user info */
+        gap: 0.625rem;                /* Espaço entre itens */
     }
 }
 
-/* ======= LAYOUT GERAL ====== */
+/* =========================
+   LAYOUT GERAL
+========================= */
 .layout {
-    display: flex; /* Layout em linha */
-    flex-direction: row; /* Colunas lado a lado */
+    display: flex;                    /* Flexbox: sidebar + conteúdo */
+    flex-direction: row;              /* Em linha */
 }
 
 .main-content {
-    flex: 1; /* Ocupa todo o espaço disponível */
-    padding: 20px; /* Espaçamento interno */
-    background-color: #ecf0f1; /* Fundo claro */
-    min-height: calc(100vh - 60px); /* Ajusta a altura menos o header */
+    flex: 1;                          /* Ocupa todo o espaço disponível */
+    padding: 1.25rem;                 /* Espaçamento interno */
+    background-color: #ecf0f1;        /* Fundo do conteúdo */
+    min-height: calc(100vh - 60px);   /* Altura mínima da tela, menos altura do header */
 }
 
-/* ===== VIEW LOGIN ===== */
+/* =========================
+   VIEW LOGIN
+========================= */
 .login-wrapper {
-    display: flex; /* Layout flex */
-    height: 100vh; /* Ocupa a tela inteira */
-    font-family: Arial, sans-serif; /* Fonte padrão */
+    display: flex;                    /* Flexbox */
+    height: 100vh;                    /* Ocupa tela toda */
 }
 
 .login-container {
-    display: flex; /* Container flexível */
-    width: 80vw; /* Ocupa 80% da largura da tela */
-    height: 550px; /* Altura fixa */
-    margin: auto; /* Centraliza na tela */
+    display: flex;                    /* Flexbox */
+    width: 80vw;                      /* Ocupa 80% da largura */
+    min-height: 34rem;                /* Altura mínima */
+    margin: auto;                     /* Centraliza */
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25); /* Sombra */
-    border-radius: 16px; /* Bordas arredondadas */
-    overflow: hidden; /* Esconde conteúdo que passa do limite */
-    background: #ffffff; /* Fundo branco */
-    color: #333; /* Texto escuro */
+    border-radius: 16px;              /* Bordas arredondadas */
+    overflow: hidden;                 /* Oculta conteúdo que ultrapassa */
+    background: var(--card-bg);       /* Fundo branco */
+    color: #333;                      /* Texto escuro */
 }
 
 .login-left {
-    flex: 7; /* Parte maior */
-    background: linear-gradient(135deg, #0a1f44 0%, #142f5f 50%, #1c3a6b 100%); /* Fundo em degradê */
-    color: #ffffff; /* Texto branco */
-    display: flex; /* Flex container */
-    flex-direction: column; /* Elementos em coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center; /* Centraliza horizontalmente */
-    padding: 50px; /* Espaço interno */
-    text-align: center; /* Texto centralizado */
+    flex: 7;                          /* Ocupa 70% */
+    background: var(--login-left-bg); /* Degradê definido nas variáveis */
+    color: var(--text-light);         /* Texto claro */
+    display: flex;                    /* Flexbox */
+    flex-direction: column;           /* Em coluna */
+    justify-content: center;          /* Centraliza verticalmente */
+    align-items: center;              /* Centraliza horizontalmente */
+    padding: 3rem;                    /* Espaçamento interno */
+    text-align: center;               /* Centraliza texto */
 }
 
 .login-left h1 {
-    font-size: 2.2rem; /* Tamanho do título */
-    margin-bottom: 15px; /* Espaço abaixo */
-    color: #ffffffcc; /* Branco com transparência */
+    font-size: 2.2rem;                /* Título grande */
+    margin-bottom: 0.9375rem;         /* Espaçamento abaixo */
+    color: rgba(255, 255, 255, 0.8);  /* Branco translúcido */
 }
 
 .login-left p {
-    font-size: 1.1rem; /* Texto médio */
-    color: #ffffffb3; /* Branco mais suave */
-    max-width: 300px; /* Largura máxima */
+    font-size: 1.1rem;                /* Texto maiorzinho */
+    color: rgba(255, 255, 255, 0.7);  /* Branco translúcido */
+    max-width: 300px;                 /* Largura máxima */
 }
 
 .login-right {
-    flex: 3; /* Parte menor */
-    background: #f0f4fa; /* Fundo claro */
-    display: flex; /* Flex container */
-    flex-direction: column; /* Coloca itens em coluna */
-    justify-content: center; /* Centraliza verticalmente */
-    padding: 60px; /* Espaço interno */
-    border-radius: 0 16px 16px 0; /* Bordas arredondadas do lado direito */
-    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1); /* Sombra lateral */
+    flex: 3;                          /* Ocupa 30% */
+    background: #f0f4fa;              /* Fundo claro */
+    display: flex;                    /* Flexbox */
+    flex-direction: column;           /* Em coluna */
+    justify-content: center;          /* Centraliza verticalmente */
+    padding: 3.75rem;                 /* Espaçamento interno */
+    border-radius: 0 16px 16px 0;     /* Bordas arredondadas na direita */
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1); /* Sombra na lateral */
 }
 
 .login-right h2 {
-    margin-bottom: 25px; /* Espaço inferior */
-    font-size: 1.6rem; /* Tamanho médio */
-    color: #0a1f44; /* Azul escuro */
+    margin-bottom: 1.5625rem;         /* Espaço abaixo */
+    font-size: 1.6rem;                /* Tamanho da fonte */
+    color: #0a1f44;                   /* Azul escuro */
 }
 
 .login-form {
-    display: flex; /* Flex container */
-    flex-direction: column; /* Coluna */
+    display: flex;                    /* Flexbox */
+    flex-direction: column;           /* Campos em coluna */
 }
 
 .form-group {
-    margin-bottom: 20px; /* Espaço inferior */
+    margin-bottom: 1.25rem;           /* Espaço entre inputs */
 }
 
 .login-form input {
-    width: 100%; /* Largura total */
-    padding: 14px; /* Espaço interno */
-    border: 1px solid #cdd9ed; /* Borda cinza clara */
-    border-radius: 30px; /* Bordas arredondadas */
-    outline: none; /* Remove contorno */
-    font-size: 15px; /* Texto médio */
-    transition: 0.3s; /* Suaviza interações */
-    background-color: #ffffff; /* Fundo branco */
+    width: 100%;                      /* Preenche toda a largura */
+    padding: 0.875rem;                /* Espaçamento interno */
+    border: 1px solid #cdd9ed;        /* Borda cinza clara */
+    border-radius: 30px;              /* Bordas arredondadas */
+    outline: none;                    /* Remove highlight padrão */
+    font-size: 0.9375rem;             /* Tamanho fonte */
+    transition: 0.3s;                 /* Suaviza animações */
+    background-color: var(--card-bg); /* Fundo branco */
 }
 
 .login-form input:focus {
-    border-color: #0a1f44; /* Azul escuro */
-    box-shadow: 0 0 10px rgba(10, 31, 68, 0.3); /* Sombra azul */
+    border-color: #0a1f44;            /* Azul escuro no foco */
+    box-shadow: 0 0 10px rgba(10, 31, 68, 0.3); /* Glow ao focar */
 }
 
 .btnlogin {
-    background: linear-gradient(135deg, #0a1f44 0%, #1c3a6b 100%); /* Fundo degradê */
-    color: #fff; /* Texto branco */
-    padding: 14px; /* Espaçamento interno */
-    border: none; /* Remove borda */
-    border-radius: 30px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor de mão */
-    font-size: 1rem; /* Tamanho da fonte */
-    transition: 0.3s; /* Suaviza efeitos */
+    background: linear-gradient(135deg, #0a1f44 0%, #1c3a6b 100%); /* Degradê */
+    color: var(--text-light);         /* Texto branco */
+    padding: 0.875rem;                /* Espaço interno */
+    border: none;                     /* Sem borda */
+    border-radius: 30px;              /* Bordas arredondadas */
+    cursor: pointer;                  /* Cursor de clique */
+    font-size: 1rem;                  /* Fonte média */
+    transition: 0.3s;                 /* Suaviza hover */
 }
 
 .btnlogin:hover {
-    opacity: 0.9; /* Fica levemente transparente */
+    opacity: 0.9;                     /* Escurece levemente ao passar o mouse */
 }
 
-@media (max-width: 768px) {
-    .card-section {
-        flex-direction: column; /* Empilha cards */
-        align-items: center; /* Centraliza */
-    }
-}
-
-/* ===== CARDS ===== */
+/* =========================
+   CARDS
+========================= */
 .card-section {
-    display: grid; /* Layout em grid */
-    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
-    gap: 9px; /* Espaço entre cards */
-    padding: 15px; /* Espaço interno */
-    justify-items: center; /* Centraliza os cards */
+    display: grid;                    /* Grid */
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+    gap: 0.5625rem;                   /* Espaço entre cards */
+    padding: 0.9375rem;               /* Espaçamento interno */
+    justify-items: center;            /* Centraliza os cards */
 }
 
 .card {
-    background: #ffffff; /* Fundo branco */
-    color: #333; /* Texto escuro */
-    width: 370px; /* Largura fixa */
-    height: 200px; /* Altura fixa */
-    border-radius: 12px; /* Bordas arredondadas */
+    background: var(--card-bg);       /* Fundo branco */
+    color: #333;                      /* Texto escuro */
+    width: 23rem;                     /* Largura fixa */
+    height: 12.5rem;                  /* Altura fixa */
+    border-radius: 12px;              /* Bordas arredondadas */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Sombra */
-    padding: 20px; /* Espaço interno */
-    display: flex; /* Flex container */
-    flex-direction: column; /* Coloca itens em coluna */
-    justify-content: space-between; /* Espaço entre título e corpo */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza animações */
+    padding: 1.25rem;                 /* Espaçamento interno */
+    display: flex;                    /* Flexbox */
+    flex-direction: column;           /* Conteúdo em coluna */
+    justify-content: space-between;   /* Espaço entre header e body */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animação hover */
 }
 
 .card:hover {
-    transform: translateY(-4px); /* Levanta o card */
+    transform: translateY(-4px);      /* Sobe levemente */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Mais sombra */
 }
 
 .card-header {
-    display: flex; /* Flex container */
-    justify-content: space-between; /* Espaço entre título e ícone */
-    align-items: center; /* Centraliza verticalmente */
-    font-weight: bold; /* Negrito */
-    font-size: 1.1em; /* Tamanho */
+    display: flex;                    /* Flexbox */
+    justify-content: space-between;   /* Espaço entre título e ícone */
+    align-items: center;              /* Centraliza verticalmente */
+    font-weight: bold;                /* Negrito */
+    font-size: 1.1em;                 /* Fonte maior */
 }
 
 .card-body {
-    font-size: 0.95em; /* Texto médio */
-    color: #555; /* Cinza */
+    font-size: 0.95em;                /* Fonte padrão */
+    color: #555;                      /* Texto cinza */
 }
 
 
 
+
+/* =========================
+   SIDEBAR
+========================= */
 .sidebar {
-width: 65px;  /* Largura inicial (colapsado) */
-background: #0383a3;; /* Fundo escuro */
-color: #ecf0f1; /* Texto branco */
-height: 100vh; /* Ocupa toda a tela */
-padding: 15px 5px;
-transition: width 0.3s ease;
-display: flex;
-flex-direction: column;
-justify-content: space-between; /* Mantém o logout no rodapé */
-
+    width: 65px;                          /* Largura colapsada */
+    background: var(--primary-light);        /* Fundo da sidebar */
+    color: var(--text-light);
+    height: 92.2vh;
+    padding: 0.9375rem 0.3125rem;
+    transition: width 0.3s ease, background 0.3s;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Sidebar expandida */
 .sidebar.active {
-width: 200px;
+    width: 200px;     
+                        /* Largura expandida */
 }
 
+/* Lista de itens */
+.sidebar ul {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    list-style: none;                      /* Remove bullets */
+    padding: 0;
+    margin: 0;
+}
 
-/* Scroll customizado */
-.sidebar ul::-webkit-scrollbar {
-width: 6px;
-}
-.sidebar ul::-webkit-scrollbar-thumb {
-background: #00A9D4;;
-border-radius: 4px;
-}
-/* Itens */
+/* Itens da sidebar */
 .sidebar li {
-margin-bottom: 10px;
-position: relative; /* Movi o position relative para li, para o tooltip não ser clipado */
+    margin-bottom: 0.625rem;
+    position: relative;
 }
+
+/* Links */
 .sidebar a {
-display: flex;
-align-items: center;
-padding: 12px;
-border-radius: 8px;
-color: inherit;
-text-decoration: none;
-transition: background 0.2s;
-}
-/* Hover */
-.sidebar a:hover {
-background: #0060c1ed;
-}
-/* Ícones */
-.sidebar i {
-font-size: 18px;
-min-width: 25px;
-text-align: center;
-}
-/* Texto visível normalmente quando expandido */
-.sidebar a span {
-margin-left: 10px; /* Espaço entre ícone e texto quando expandido */
-}
-/* Texto escondido quando colapsado */
-.sidebar:not(.active) a span {
-display: none;
-position: absolute;
-left: calc(100% + 10px); /* Aparece à direita com espaçamento */
-top: 50%;
-transform: translateY(-50%);
-background: #34495e; /* Fundo para destacar */
-color: #ecf0f1;
-padding: 8px 12px;
-border-radius: 6px;
-box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-white-space: nowrap;
-opacity: 0;
-transition: opacity 0.2s ease;
-z-index: 10;
-}
-/* Mostra o span no hover quando colapsado */
-.sidebar:not(.active) li:hover a span {
-display: block;
-opacity: 1;
-}
-/* Item ativo */
-.sidebar li.active a {
-background: #44d4b7;
-color: white;
-font-weight: bold;
-}
-.logout-form button {
-    width: 100%;
-   background: #0383a3;; /* Fundo escuro */
-    border: none;
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    position: relative; /* Necessário para o span flutuar */
-    transition: background 0.2s;
+    padding: 0.75rem;
+    border-radius: 8px;
+    color: inherit;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Hover do botão */
-.logout-form button:hover {
-    background: #c0392b;
+/* Hover dos links */
+.sidebar a:hover {
+    background: var(--primary-dark);
 }
 
-/* Span do tooltip do botão */
-.logout-form button span {
-    display: none; /* Escondido por padrão */
+/* Ícones */
+.sidebar i {
+    font-size: 1.125rem;
+    min-width: 25px;
+    text-align: center;
+}
+
+/* Texto do link */
+.sidebar a span {
+    margin-left: 0.625rem;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* Tooltip quando sidebar está colapsada */
+.sidebar:not(.active) a span {
+    visibility: hidden;
+    opacity: 0;
     position: absolute;
-    left: 110%; /* Fica à direita do botão */
+    left: calc(60% + 3px);
     top: 50%;
     transform: translateY(-50%);
-    background: #34495e;
-    padding: 6px 10px;
+    background: var(--accent);
+    color: var(--text-light);
+    padding: 0.5rem 0.75rem;
     border-radius: 6px;
     white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     z-index: 10;
 }
 
-/* Mostra o tooltip apenas no hover do botão */
-.logout-form button:hover span {
-    display: block;
+/* Exibe tooltip ao passar o mouse */
+.sidebar:not(.active) li:hover a span {
+    visibility: visible;
     opacity: 1;
-    pointer-events: auto;
-    transform: translateY(-50%) translateX(0);
+}
+
+/* Item ativo */
+.sidebar li.active a {
+    background: var(--accent);
+    color: var(--text-light);
+    font-weight: bold;
+    box-shadow: inset 5px 0 0 rgba(255, 255, 255, 0.5); /* Destaque lateral */
+}
+
+/* Empurra o logout pro final */
+.sidebar ul li.logout {
+    margin-top: auto;
+    height: 43px;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;                    /* Sidebar menor em mobile */
+    }
+
+    .sidebar.active {
+        width: 180px;                   /* Expandida no mobile */
+    }
+
+    .sidebar li.active a {
+        box-shadow: inset 4px 0 0 rgba(255, 255, 255, 0.5);
+    }
 }

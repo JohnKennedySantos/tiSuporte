@@ -6,24 +6,24 @@ use App\Model\UsuarioModel;
 
 class LoginController extends BaseController
 {
-    // Exibe a tela de login para o usuário
+
     public function exibirLogin(): void
     {
-        // Se já estiver logado, redireciona para a home
+        
         if (isset($_SESSION['usuario'])) {
             header('Location: index.php?rota=home');
             exit;
         }
 
-        echo $this->twig->render('LoginView.twig', [
-            'erro' => $_SESSION['erro'] ?? null
-        ]);
-
-        // Limpa a mensagem de erro da sessão
+        $erro = $_SESSION['erro'] ?? null;
         unset($_SESSION['erro']);
+
+        echo $this->twig->render('LoginView.twig', [
+            'erro' => $erro
+        ]);
     }
 
-    // Autenticação
+    
     public function autenticar(): void
     {
         $email = trim($_POST['email'] ?? '');
@@ -38,12 +38,24 @@ class LoginController extends BaseController
         $usuarioModel = new UsuarioModel();
         $usuario = $usuarioModel->buscarPorEmail($email);
 
+        
         if ($usuario && password_verify($senha, $usuario['Senha'])) {
-            $_SESSION['usuario'] = $usuario;
+            
+            session_regenerate_id(true);
+
+            
+            $_SESSION['usuario'] = [
+                'id'    => $usuario['IdUsuario'],
+                'Usuario'  => $usuario['Usuario'],
+                'email' => $usuario['Email']
+            ];
+
+
             header('Location: index.php?rota=home');
             exit;
         }
 
+        
         $_SESSION['erro'] = 'Email ou senha inválidos.';
         header('Location: index.php?rota=login');
         exit;
@@ -52,7 +64,21 @@ class LoginController extends BaseController
     // Logout
     public function sair(): void
     {
+        // Limpa dados da sessão
+        $_SESSION = [];
+
+        // Remove o cookie de sessão (se existir)
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        // Destrói a sessão
         session_destroy();
+
         header('Location: index.php?rota=login');
         exit;
     }

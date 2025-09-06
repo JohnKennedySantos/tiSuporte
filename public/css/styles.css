@@ -291,7 +291,7 @@ body {
 ========================= */
 .sidebar {
     width: 65px;                          /* Largura colapsada */
-    background: var(--primary-light);        /* Fundo da sidebar */
+    background: var(--primary-light)0;        /* Fundo da sidebar */
     color: var(--text-light);
     height: 92.2vh;
     padding: 0.9375rem 0.3125rem;

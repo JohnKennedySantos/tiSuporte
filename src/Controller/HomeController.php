@@ -16,7 +16,8 @@ class HomeController extends BaseController
         }
 
         echo $this->twig->render('homeView.twig', [
-            'usuario' => $_SESSION['usuario']
+            'usuario' => $_SESSION['usuario'],
+            'titulo' => 'Home' 
         ]);
     }
 }

@@ -15,7 +15,7 @@ abstract class BaseController
             session_start();
         }
 
-        // Configuração do Twig
+     
         $this->twig = TwigConfig::getTwig();
     }
 }
